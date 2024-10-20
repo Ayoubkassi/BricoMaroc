@@ -35,6 +35,8 @@ gem "jwt"
 
 #async 
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
+
 
 #gps
 
