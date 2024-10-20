@@ -1,0 +1,9 @@
+
+
+
+# start here 
+
+check_pending_requests:
+  cron: "58 21 * * *" # every day at 9 AM
+  class: CheckPendingRequestsJob
+  queue: default

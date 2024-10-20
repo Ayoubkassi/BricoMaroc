@@ -1,0 +1,15 @@
+<h1>Hello, <%= @worker.username %></h1>
+
+<p>You have the following pending requests:</p>
+
+<ul>
+  <% @pending_requests.each do |request| %>
+    <li>
+      Request ID: <%= request.id || 1 %><br>
+      Status: <%= request.status || 1  %><br>
+      Created At: <%= request.created_at.strftime("%B %d, %Y %H:%M") || 1 %>
+    </li>
+  <% end %>
+</ul>
+
+<p>Please check your account for more details.</p>
