@@ -34,7 +34,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -55,6 +55,26 @@ Rails.application.configure do
 
   # Highlight code that enqueued background job in logs.
   config.active_job.verbose_enqueue_logs = true
+
+
+
+  # email 
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gmail.com', # Replace with your domain
+    user_name:            ENV['GMAIL_USERNAME'], # Replace with your email
+    password:             ENV['GMAIL_PASSWORD'], # Use your Gmail password or App Password
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+
+  # For development environment, you may want to see emails in the browser
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
 
   # Raises error for missing translations.

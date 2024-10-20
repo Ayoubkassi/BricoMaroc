@@ -6,13 +6,14 @@ class Api::V1::UsersController < ApplicationController
 
     skip_before_action :authorized, only: [:signup]
 
-    def signup 
+    def signup
         @user = User.new(user_params)
         if @user.save 
+            NotificationJob.perform_later(@user)
             render json: { message: "User created successfully" } , status: :created
         else
             render json: { errors: @user.errors.full_message } , status: :unprocessable_entity 
-        end 
+        end
     end 
 
     def login
